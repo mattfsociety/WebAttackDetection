@@ -1,4 +1,5 @@
-function detectAttack() {
+window.onload = function urlDetect(){
+
 
     // --- !! IMPORTANT !! --- \\
 
@@ -8,68 +9,141 @@ function detectAttack() {
 
 
 
+    var majorAttack;
+    var attack;
+    var inputType;
+    var link = window.location.href;
+
+    // Check for a web attack in the URL
+    if (link.indexOf("'") >= 0) {
+
+        majorAttack = "SQL Injection";
+        attack = "Error Based SQL Injection (')";
+        inputType = "URL";
+
+        sendMail(majorAttack, attack, email, inputType);
+
+    } else if (link.indexOf("&&") >= 0) {
+
+        majorAttack = "SQL Injection";
+        attack = "Encoded Boolean Based SQL Injection (&&)";
+        inputType = "URL";
+
+        sendMail(majorAttack, attack, email, inputType);
+
+    } else if (link.indexOf("||") >= 0) {
+
+        majorAttack = "SQL Injection";
+        attack = "Encoded Boolean Based SQL Injection (||)";
+        inputType = "URL";
+
+        sendMail(majorAttack, attack, email, inputType);
+
+    } else if (link.indexOf("<script") >= 0) {
+
+        majorAttack = "XSS Attack";
+        attack = "Malicious script ( <script )";
+        inputType = "URL";
+
+        sendMail(majorAttack, attack, email, inputType);
+
+    } else if (link.indexOf("<img") >= 0) {
+
+        majorAttack = "XSS Attack";
+        attack = "Malicious image ( <img )";
+        inputType = "URL";
+
+        sendMail(majorAttack, attack, email, inputType);
+
+    } else if (link.indexOf("<") >= 0) {
+
+        majorAttack = "XSS Attack";
+        attack = "Cross-Site Scripting - others (used '<' )";
+        inputType = "URL";
+
+        sendMail(majorAttack, attack, email, inputType);
+
+    }
+};
+
+function fieldsDetect() {
+
+
+
+    // --- !! IMPORTANT !! --- \\
+
+    // Change the hashtag to your email
+    // When there is an attack, the alert will be send to this email
+    var email = "matt.timmermans@student.fontys.nl";
+
+
 
     var majorAttack;
     var attack;
+    var inputType;
 
-    // Count all the inputfields with class SQLCHECK
+    // Count all the inputfields with class detection
     var count = document.querySelectorAll('.detection');
 
     // Fill variable with values of all inputfields via a loop
     for (var i = 0, len = count.length; i < len; i++) {
         var gegeven = count[i].value;
 
-        // Check for SQL injection
+        // Check for a web attack
         if (gegeven.indexOf("'") >= 0) {
 
             majorAttack = "SQL Injection";
             attack = "Error Based SQL Injection (')";
+            inputType = "Text field";
 
-            sendMail(majorAttack, attack, email);
+            sendMail(majorAttack, attack, email, inputType);
 
         } else if (gegeven.indexOf("&&") >= 0) {
 
             majorAttack = "SQL Injection";
             attack = "Encoded Boolean Based SQL Injection (&&)";
+            inputType = "Text field";
 
-            sendMail(majorAttack, attack, email);
+            sendMail(majorAttack, attack, email, inputType);
 
         } else if (gegeven.indexOf("||") >= 0) {
 
             majorAttack = "SQL Injection";
             attack = "Encoded Boolean Based SQL Injection (||)";
+            inputType = "Text field";
 
-            sendMail(majorAttack, attack, email);
+            sendMail(majorAttack, attack, email, inputType);
 
         } else if (gegeven.indexOf("<script") >= 0) {
 
             majorAttack = "XSS Attack";
             attack = "Malicious script ( <script )";
+            inputType = "Text field";
 
-            sendMail(majorAttack, attack, email);
+            sendMail(majorAttack, attack, email, inputType);
 
         } else if (gegeven.indexOf("<img") >= 0) {
 
             majorAttack = "XSS Attack";
             attack = "Malicious image ( <img )";
+            inputType = "Text field";
 
-            sendMail(majorAttack, attack, email);
+            sendMail(majorAttack, attack, email, inputType);
 
         } else if (gegeven.indexOf("<") >= 0) {
 
             majorAttack = "XSS Attack";
             attack = "Cross-Site Scripting - others (used '<' )";
+            inputType = "Text field";
 
-            sendMail(majorAttack, attack, email);
+            sendMail(majorAttack, attack, email, inputType);
 
-        } else{
-            // Nothing (deleted)
         }
     }
 }
 
-var userip;
-function sendMail(majorAttack, attack, email) {
+function sendMail(majorAttack, attack, email, inputType) {
+
 // Fill variables with information about the user
     var url = window.location.href;
     var date = new Date();
@@ -137,14 +211,14 @@ function sendMail(majorAttack, attack, email) {
 
     // Set up the data for an email alert
     var data = 'email=' + email + '&browserName=' + browserName + '&fullVersion=' + fullVersion + '&majorVersion=' +
-        majorVersion + '&userip=' + userip + '&url=' + url + '&date=' + date + '&attack=' + attack + '&majorAttack=' + majorAttack;
+        majorVersion + '&userip=' + userip + '&url=' + url + '&date=' + date + '&attack=' + attack + '&majorAttack=' + majorAttack + '&inputType=' + inputType;
 
     // Send data to PhP file so the mail can be send
     $.ajax({
         type: "POST",
-        // The mail will be send by using this file
-        url: 'mail.php',
+        url: 'mail.php', // The mail will be send by using this file
         data: data
     })
 
 }
+

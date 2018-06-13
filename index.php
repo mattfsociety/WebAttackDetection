@@ -26,11 +26,11 @@
         <input type="text" class="detection"><br>
         <p>Password</p>
         <input type="text" class="detection"><br><br>
-        <button type="button" onclick="detectAttack()" href="javascript:void(0)">Login</button>
+        <button type="button" onclick="fieldsDetect()" href="javascript:void(0)">Login</button>
     </form>
 
-    <script type="text/javascript" src="detector.js"></script>
 
+    <script type="text/javascript" src="detector.js"></script>
 
 
 </main>
