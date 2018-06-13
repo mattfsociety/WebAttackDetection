@@ -1,8 +1,8 @@
 <?php
 
 // ATTACK
-$attack = $_POST['Attack'];
-$sort_attack = $_POST['sortAttack'];
+$attack = $_POST['attack'];
+$majorAttack = $_POST['majorAttack'];
 $url = $_POST['url'];
 $date = $_POST['date'];
 
@@ -16,9 +16,9 @@ $ip = $_POST['userip'];
 $mailTo = $_POST['email'];
 
 //SET UP AN EMAIL
-$nameFrom = "SQL Injection detected!!";
-$headers = "From: SQL-Detector@detection.com";
-$text = "Attack = ".$attack;
+$nameFrom = $majorAttack." detected!!";
+$headers = "From: webattack@noreply.com";
+$text = "Hello,\n\nWe've detected a ".$majorAttack." attack at your website. Below are the details.\n\nAttack: ".$attack."\nWebsite: ".$url."\nDate: ".$date."\nBrowser: ".$browserName."\nMajor browser version: ".$majorVersion."\nFull browser version: ".$fullVersion."\nIP-Address: ".$ip;
 
 // SEND MAIL
 mail($mailTo, $nameFrom, $text, $headers);
