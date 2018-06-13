@@ -1,15 +1,24 @@
 function detectAttack() {
 
+    // --- !! IMPORTANT !! --- \\
+
+    // Change the hashtag to your email
+    // When there is an attack, the alert will be send to this email
     var email = "matt.timmermans@student.fontys.nl";
+
+
+
 
     var majorAttack;
     var attack;
 
     // Count all the inputfields with class SQLCHECK
     var count = document.querySelectorAll('.detection');
+
     // Fill variable with values of all inputfields via a loop
     for (var i = 0, len = count.length; i < len; i++) {
         var gegeven = count[i].value;
+
         // Check for SQL injection
         if (gegeven.indexOf("'") >= 0) {
 
