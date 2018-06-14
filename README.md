@@ -1,16 +1,17 @@
 # Web Attack Detection 
   
-This README file is about the Web Attack Detection. The Web Attack Detection can  
-detect  a SQL Injection and XSS attack at your website and will send you an email when there has  
-been an attack.  
+This README file is about the Web Attack Detection. The Web Attack Detection can detect a SQL Injection and XSS attack at your 
+website and will send you an email when your website has been attacked. It can detect these attacks as well as via textfields as via the URL-bar.  
   
 ## Getting Started  
   
 Follow the next steps to install the Web Attack Detection library correctly!  
   
 ### Installing  
+  First, you have to make a 404 error page if you don't have this already. Make sure your .htaccess file knows this page.
   
-First, add these lines of code in the head-element of your HTML code:  
+  
+Second, add these lines of code in the head-element of every page:  
   
 ```  
 <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>  
@@ -18,7 +19,7 @@ First, add these lines of code in the head-element of your HTML code:
 <script src="https://smtpjs.com/v2/smtp.js"></script>  
 ```  
   
-After you downloaded the map to your server you have to make a link to the library.  
+After you downloaded the files to your server you have to make a link to the library (do this on every page).  
   
 ```  
 <script type="text/javascript" src="detector.js"></script>  
@@ -28,12 +29,13 @@ Give all the inputfields and textboxes you want to be detected for a web attack 
 Give the button that is connected to these input fields 'onclick="detectAttack()"'.  
   
 ```  
-<input type="text" class="detector"><br>  
+<input type="text" class="detectoion"><br>  
 <button type="button" onclick="detectAttack()" href="javascript:void(0)">Login</button>  
 ```  
   
-Now your HTML is ready for the library, you have to tell where you want the mail to be send to when there is an attack. You can do this in de JavaScript file.  
-Above in the file there is a var named 'email'. Change the hashtag to your email.  
+At this moment, the library can check all the inputfields and the URL-bar.
+You just have to tell the library where he has to send an allert to. You can do this in de JavaScript file.  
+In the top of the file is a var named 'email'. Change the hashtag to your email.  
   
 ```  
 var email = "helloworld@gmail.com";  
@@ -43,23 +45,22 @@ var email = "helloworld@gmail.com";
 ## And now?  
   
 Congratulations! You correctly installed the Web Attack Detection tool!<br>  
-Whenever someone puts malicious code in your inputfields that are connected to the library, you will get an alert via email. We will tell you the browsername, browserversion, major browser version and ip-address of the attacker and the link and date/time of the attack.  
+Whenever someone puts malicious code in your inputfields that are connected to the library, you will get an alert via 
+email. We will tell you the browsername, browserversion, major browser version and ip-address of the attacker and the 
+link and date/time of the attack.  
   
 ## Demo  
 ##### 1# You installed the Web Attack Detection tool successfullly<br>
-![enter image description here](http://www.blueram.nl/Test/Cyber/demo/demo1.PNG)
+![Demo 1](http://www.blueram.nl/Test/Cyber/demo/demo1.PNG)
   
 ##### 2# The attacker inputs his SQL Injection to log in as the Admin.<br>
-  ![
-](http://www.blueram.nl/Test/Cyber/demo/demo2.PNG)
+  ![Demo 2](http://www.blueram.nl/Test/Cyber/demo/demo2.PNG)
 
 ##### 3# You will receive an email in your inbox!
-![
-](http://www.blueram.nl/Test/Cyber/demo/demo3.PNG)<br>
+![Demo 3](http://www.blueram.nl/Test/Cyber/demo/demo3.PNG)<br>
 
 ##### 4# We will give you information about the attack and attacker
-![
-](http://www.blueram.nl/Test/Cyber/demo/demo4.PNG)<br>
+![Demo 4](http://www.blueram.nl/Test/Cyber/demo/demo4.PNG)<br>
 ## Important  
   
 The Web Attack Detection tool does NOT work on a local server. There is also a PhP
