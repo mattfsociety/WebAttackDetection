@@ -29,7 +29,7 @@ Give all the inputfields and textboxes you want to be detected for a web attack 
 Give the button that is connected to these input fields 'onclick="detectAttack()"'.  
   
 ```  
-<input type="text" class="detectoion"><br>  
+<input type="text" class="detection"><br>  
 <button type="button" onclick="detectAttack()" href="javascript:void(0)">Login</button>  
 ```  
   
